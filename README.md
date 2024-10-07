@@ -4,9 +4,11 @@
 
 ### Vamos a utilizar los módulos de Python, en este caso 'time', el cual deberemos importar al principio de nuestro código.
 
-### Para que tengamos un poco más de 'trabajo' vamos permitirle que se puedan introducir tanto segundos como minutos y horas, aunque este último sea a modo de práctica más que de utilización real.
+### Para que tengamos un poco más de 'trabajo' vamos permitirle que se puedan introducir tanto segundos como minutos y horas, incluso el temporizador lo mostrará en ese formato.
 
-### Le crearemos una interfaz simple, para que no sea sólo interactuar con la terminal.
+> ##### Ej: Si introduces 120s, el temporizador mostrará 2min.
+
+### Le crearemos una interfaz simple, para que no sea sólo interactuar con la terminal. La interfaz la crearemos en un archivo .py diferente y la llamaremos desde el principal.
 
 ## Qué he usado
 
