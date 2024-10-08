@@ -1,51 +1,31 @@
 ### Interfaz del Temporizador ###
 
 import tkinter as tk
-from tkinter import messagebox
+from temporizador import iniciar_temporizador
 
-# definimos la func que llamará al temporizador que hemos creado
-def iniciar_temporizador(temporizador_func):
-    horas = entry_horas.get() or 0
-    minutos = entry_minutos.get() or 0
-    segundos = entry_segundos.get() or 0
-    total_segundos = int(horas * 3600 + int(minutos) * 60 + int(segundos))
-    temporizador_func(total_segundos)
+# definimos func que inicia temporizador y actualiza la interfaz
+def iniciar_desde_interfaz():
+    tiempo_ingresado = int(entrada_tiempo.get())
+    iniciar_temporizador(tiempo_ingresado, actualizar_tiempo_restante)
 
-# definimos la func que crea la interfaz
-def crear_interfaz(temporizador_func):
-    global entry_horas, entry_minutos, entry_segundos, label_tiempo
-
-    # ventana principal
-    root = tk.Tk()
-    root.title("Temporizador")
-
-    # widget de la interfaz
-    label_horas = tk.Label(root, text="Horas:")
-    label_horas.grid(row=0, column=0)
-    entry_horas = tk.Entry(root, width=5)
-    entry_horas.grid(row=0, column=1)
-
-    label_minutos = tk.Label(root, text="Minutos:")
-    label_minutos.grid(row=0, column=0)
-    entry_minutos = tk.Entry(root, width=5)
-    entry_horas.grid(row=1, column=1)
-
-    label_segundos = tk.Label(root, text="Segundos:")
-    label_segundos.grid(row=2, column=0)
-    entry_segundos = tk.Entry(root, width=5)
-    entry_segundos.grid(row=2, column=1)
-
-    button_inciar = tk.Button(root, text="Iniciar", command=lambda: iniciar_temporizador(temporizador_func))
-    button_inciar.grid(row=3, column=0, columnspan=2)
-
-    label_tiempo = tk.Label(root, text="00h:00m:00s", font=("Helvetica", 24))
-    label_tiempo.grid(row=4, column=0, columnspan=2)
-
-    # iniciamos el bucle de la interfaz
-    root.mainloop()
-
-# func para actualizar el tiempo de la interfaz
+# func que actualiza el tiempo en la interfaz
 def actualizar_tiempo_restante(tiempo_restante):
-    label_tiempo.config(text=tiempo_restante)
+    etiqueta_tiempo.config(text=tiempo_restante)
+
+# ventana principal
+root = tk.Tk()
+root.title("Temporizador")
+
+# widget de la interfaz
+etiqueta_tiempo = tk.Label(root, text="00:00:00", font=("Helvetica", 24))
+etiqueta_tiempo.grid(row=0, column=0, columnspan=2)
+entrada_tiempo = tk.Entry(root)
+entrada_tiempo.grid(row=1, column=0, columnspan=2)
+boton_iniciar = tk.Button(root, text="Inicar", command=iniciar_desde_interfaz)
+boton_iniciar.grid(row=2, column=0, columnspan=2)
+
+# iniciamos el bucle de la interfaz
+root.mainloop()
+
 
 
