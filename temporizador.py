@@ -2,24 +2,35 @@
 
 import time
 
-# func que inicia el temporizador
-def iniciar_temporizador(segundos, actualizar_tiempo_restante, root):
-    cuenta_atras(segundos, actualizar_tiempo_restante, root)
-
-# func de cuenta atrás
-def cuenta_atras(segundos, actualizar_tiempo_restante, root):
-    if segundos > 0:
-        horas = segundos // 3600
-        minutos = (segundos % 3600) // 60
-        segundos_restantes = segundos % 60
-
+def temporizador(segundos):
+    while segundos > 0:
+        hor = segundos // 3600
+        min = (segundos % 3600) //60
+        seg = segundos % 60
         # aquí se indica el formato del temporizador. 2 dígitos, horas, minutos, segundos
-        tiempo_restante = f"{horas:02d}:{minutos:02d}:{segundos_restantes:02d}"
+        tiempo_restante = f"{hor:02d}:{min:02d}:{seg:02d}"
+        print(tiempo_restante, end="\r")
+        time.sleep(1)
+        segundos-= 1
+    print("Tiempo finalizado")
 
-        # se actualiza el tiempo en la interfaz
-        actualizar_tiempo_restante(tiempo_restante)
+# func para aceptar horas, min y seg en diferentes formatos
+def convertir_a_segundos(tiempo):
+    horas, minutos, segundos = 0, 0, 0
+    if 'h' in tiempo:
+        horas = int(tiempo.split('h')[0])
+        tiempo = tiempo.split('h')[1]
+    if 'm' in tiempo:
+        minutos = int(tiempo.split('m')[0])
+        tiempo = tiempo.split('m')[1]
+    if 's' in tiempo:
+        segundos = int(tiempo.split('s')[0])
+        tiempo = tiempo.split('s')[1]
 
-        # se llama de nuevo a esta función después de 1s
-        root.after(1000, lambda: cuenta_atras(segundos -1, actualizar_tiempo_restante, root))
-    else:
-        actualizar_tiempo_restante("Tiempo finalizado")
+    total_segundos = horas *3600 + minutos *60 + segundos
+    return total_segundos
+
+tiempo_ingresado = (input("Ingresa el tiempo (indica si son horas, minutos, segundos): "))
+segundos_totales = convertir_a_segundos(tiempo_ingresado)
+
+temporizador(segundos_totales)

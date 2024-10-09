@@ -8,8 +8,6 @@
 
 > ##### Ej: Si introduces 120s, el temporizador mostrará 2min.
 
-### Le crearemos una interfaz simple, para que no sea sólo interactuar con la terminal. La interfaz la crearemos en un archivo .py diferente y la llamaremos desde el principal.
-
 ## Qué he usado
 
  - Visual Studio Code
