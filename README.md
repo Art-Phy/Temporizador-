@@ -1,4 +1,4 @@
-# Bienvenid@s a Tu Temporizador
+## Bienvenid@s a Tu Temporizador
 
 #### Es un progama simple para practicar Python, para principiantes.
 
